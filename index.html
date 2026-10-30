@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Roadmaps Hub | Lucky A.S</title>
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.35);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 80px;
+    }
+
+    /* Hero Section */
+    .badge {
+      display: inline-block;
+      border: 1px solid #0284c7;
+      color: #38bdf8;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      background: rgba(56, 189, 248, 0.08);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff 40%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    /* Search & Filter Bar */
+    .search-box {
+      width: 100%;
+      max-width: 580px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1.5px solid var(--border);
+      color: #fff;
+      padding: 14px 20px 14px 45px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    /* Grid Container */
+    .grid-container {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 18px;
+      margin-top: 15px;
+    }
+
+    .roadmap-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .roadmap-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .icon-badge {
+      font-size: 1.8rem;
+    }
+
+    .count-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid #334155;
+      color: #94a3b8;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #f1f5f9;
+      margin-bottom: 6px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 18px;
+    }
+
+    .card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .roadmap-card:hover .card-btn {
+      background: var(--accent);
+      color: #030712;
+    }
+
+    /* VIP Creator Credit Box */
+    .creator-container {
+      margin-top: 50px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .creator-box {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(8, 13, 26, 0.95));
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+      border-radius: 16px;
+      padding: 16px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .creator-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+    }
+
+    .creator-name {
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      background: linear-gradient(90deg, #ffffff, #38bdf8, #a855f7, #ffffff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 5s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .creator-link {
+      color: #94a3b8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .creator-link:hover { color: #38bdf8; }
+  </style>
+</head>
+<body>
+
+  <div class="badge">ALL-IN-ONE HUB 2026</div>
+  <h1>TECH CAREER ROADMAPS</h1>
+  <p class="subtitle">Complete visual guides, best curated YouTube playlists & essential industry books for 19 tech specializations.</p>
+
+  <!-- Live Search Bar -->
+  <div class="search-box">
+    <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search roadmap (e.g. Network, Python, DevOps, AI)..." onkeyup="filterRoadmaps()" />
+  </div>
+
+  <!-- Roadmaps Grid -->
+  <div class="grid-container" id="roadmapsGrid">
+
+    <a href="https://itslucky148.github.io/network-roadmap/" class="roadmap-card" data-title="network engineer cisco ccna wireshark">
+      <div class="card-top"><span class="icon-badge">🌐</span><span class="count-badge">01</span></div>
+      <div>
+        <div class="card-title">Network Engineer</div>
+        <div class="card-desc">Master OSI, TCP/IP, Cisco routing, subnetting, Wireshark and network automation.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/software-roadmap/" class="roadmap-card" data-title="software engineer dsa system design leetcode">
+      <div class="card-top"><span class="icon-badge">💻</span><span class="count-badge">02</span></div>
+      <div>
+        <div class="card-title">Software Engineer</div>
+        <div class="card-desc">Algorithms, Data Structures, OOP, distributed system design and SDE prep.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/cybersecurity-roadmap/" class="roadmap-card" data-title="cybersecurity ethical hacking pentesting bug bounty">
+      <div class="card-top"><span class="icon-badge">🛡️</span><span class="count-badge">03</span></div>
+      <div>
+        <div class="card-title">Cybersecurity</div>
+        <div class="card-desc">Ethical hacking, web pentesting, OWASP, Kali Linux, Nmap, and bug bounty hunting.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/frontend-roadmap/" class="roadmap-card" data-title="frontend web html css javascript react">
+      <div class="card-top"><span class="icon-badge">🎨</span><span class="count-badge">04</span></div>
+      <div>
+        <div class="card-title">Frontend Developer</div>
+        <div class="card-desc">Modern HTML, CSS, JavaScript, React.js, Tailwind, and high-performance UI design.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/systems-programming-roadmap/" class="roadmap-card" data-title="systems programming c c++ rust linux kernel">
+      <div class="card-top"><span class="icon-badge">⚙️</span><span class="count-badge">05</span></div>
+      <div>
+        <div class="card-title">Systems Programming</div>
+        <div class="card-desc">Low-level C/C++, Rust, memory management, operating systems, and kernel drivers.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/platform-engineering-roadmap/" class="roadmap-card" data-title="platform engineering kubernetes internal dev platform">
+      <div class="card-top"><span class="icon-badge">🏗️</span><span class="count-badge">06</span></div>
+      <div>
+        <div class="card-title">Platform Engineering</div>
+        <div class="card-desc">Building Internal Developer Platforms (IDP), multi-cluster Kubernetes, and GitOps.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/devsecops-roadmap/" class="roadmap-card" data-title="devsecops security ci cd saast dast container security">
+      <div class="card-top"><span class="icon-badge">🔐</span><span class="count-badge">07</span></div>
+      <div>
+        <div class="card-title">DevSecOps</div>
+        <div class="card-desc">Integrating automated security scans, SAST/DAST, and secrets into CI/CD pipelines.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/cloud-architect-roadmap/" class="roadmap-card" data-title="cloud architect aws azure gcp terraform">
+      <div class="card-top"><span class="icon-badge">☁️</span><span class="count-badge">08</span></div>
+      <div>
+        <div class="card-title">Cloud Architect</div>
+        <div class="card-desc">Enterprise multi-cloud architecture, AWS/Azure solutions, Terraform IaC, and disaster recovery.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/mlops-roadmap/" class="roadmap-card" data-title="mlops machine learning pipelines llmops kubeflow">
+      <div class="card-top"><span class="icon-badge">🚀</span><span class="count-badge">09</span></div>
+      <div>
+        <div class="card-title">MLOps & LLMOps</div>
+        <div class="card-desc">Deploying ML models, monitoring model drift, CI/CD for AI, and serving LLMs in production.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/data-engineer-roadmap/" class="roadmap-card" data-title="data engineer spark kafka hadoop big data etl">
+      <div class="card-top"><span class="icon-badge">🗄️</span><span class="count-badge">10</span></div>
+      <div>
+        <div class="card-title">Data Engineer</div>
+        <div class="card-desc">ETL data pipelines, Apache Spark, Kafka streaming, Snowflake, and big data architecture.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/sre-roadmap/" class="roadmap-card" data-title="sre site reliability engineering monitoring slo prometheus">
+      <div class="card-top"><span class="icon-badge">🚨</span><span class="count-badge">11</span></div>
+      <div>
+        <div class="card-title">SRE (Site Reliability)</div>
+        <div class="card-desc">High availability systems, SLI/SLO metrics, Prometheus, Grafana, and chaos engineering.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/embedded-iot-roadmap/" class="roadmap-card" data-title="embedded iot arduino esp32 raspberry pi firmware">
+      <div class="card-top"><span class="icon-badge">🔌</span><span class="count-badge">12</span></div>
+      <div>
+        <div class="card-title">Embedded Systems & IoT</div>
+        <div class="card-desc">Microcontrollers, ESP32, Arduino, FreeRTOS, hardware protocols (I2C, SPI), and firmware.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/blockchain-roadmap/" class="roadmap-card" data-title="blockchain web3 solidity smart contracts ethereum">
+      <div class="card-top"><span class="icon-badge">⛓️</span><span class="count-badge">13</span></div>
+      <div>
+        <div class="card-title">Blockchain & Web3</div>
+        <div class="card-desc">Smart contract development with Solidity, EVM internals, DeFi, and dApp engineering.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/game-dev-roadmap/" class="roadmap-card" data-title="game development unity unreal c# c++ 3d shader">
+      <div class="card-top"><span class="icon-badge">🎮</span><span class="count-badge">14</span></div>
+      <div>
+        <div class="card-title">Game Development</div>
+        <div class="card-desc">2D/3D physics engines, Unity (C#), Unreal Engine (C++), game loops, and shader graphics.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/mobile-dev-roadmap/" class="roadmap-card" data-title="mobile app flutter react native android kotlin ios">
+      <div class="card-top"><span class="icon-badge">📱</span><span class="count-badge">15</span></div>
+      <div>
+        <div class="card-title">Mobile App Developer</div>
+        <div class="card-desc">Cross-platform development with Flutter, React Native, and native Android (Kotlin) / iOS.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/fullstack-roadmap/" class="roadmap-card" data-title="full stack mern node express react sql mongodb">
+      <div class="card-top"><span class="icon-badge">🌍</span><span class="count-badge">16</span></div>
+      <div>
+        <div class="card-title">Full Stack Developer</div>
+        <div class="card-desc">End-to-end web apps with Node.js, React, Next.js, relational databases, and REST APIs.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/data-science-roadmap/" class="roadmap-card" data-title="data science statistics pandas python machine learning">
+      <div class="card-top"><span class="icon-badge">📊</span><span class="count-badge">17</span></div>
+      <div>
+        <div class="card-title">Data Science</div>
+        <div class="card-desc">Exploratory data analysis, Python (Pandas, NumPy), statistics, machine learning and visual storytelling.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/ai-ml-roadmap/" class="roadmap-card" data-title="ai ml artificial intelligence deep learning pytorch llm">
+      <div class="card-top"><span class="icon-badge">🤖</span><span class="count-badge">18</span></div>
+      <div>
+        <div class="card-title">AI & Machine Learning</div>
+        <div class="card-desc">Deep neural networks, PyTorch, computer vision, NLP, and modern Generative AI models.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+    <a href="https://itslucky148.github.io/devops-roadmap/" class="roadmap-card" data-title="devops docker kubernetes ci cd linux ansible">
+      <div class="card-top"><span class="icon-badge">⚡</span><span class="count-badge">19</span></div>
+      <div>
+        <div class="card-title">DevOps Engineer</div>
+        <div class="card-desc">Containerization with Docker, Kubernetes orchestration, CI/CD automation, and infrastructure code.</div>
+      </div>
+      <div class="card-btn"><span>Open Roadmap</span> →</div>
+    </a>
+
+  </div>
+
+  <!-- VIP Creator Credit Box -->
+  <div class="creator-container">
+    <div class="creator-box">
+      <div class="creator-subtitle">⚡ DEVELOPED & CREATED BY ⚡</div>
+      <div class="creator-name">Lucky A.S</div>
+      <a href="https://github.com/itslucky148" target="_blank" class="creator-link">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        github.com/itslucky148
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function filterRoadmaps() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.roadmap-card');
+
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        const text = card.innerText.toLowerCase();
+        if (title.includes(input) || text.includes(input)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
